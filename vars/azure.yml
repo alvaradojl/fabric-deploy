@@ -1,31 +1,38 @@
 ---
-# AWS Keys will be use to provision EC2 instances on AWS Cloud
+# Azure  Active Directory or Service Prinicpal Keys will be used to provision VMs  on Azure Cloud
 auth: {
-  auth_url: "",
-  # This should be your AWS Access Key ID
-  username: "AKIAJTDI64MBEL3WSYTQ",
-  # This should be your AWS Secret Access Key
-  # can be passed as part of cmd line when running the playbook
-  password: "{{ password | default(lookup('env', 'AWS_SECRET_KEY')) }}"
+  
+  subscription_id: 5b713e38-dec5-4a1f-bb95-5303b9c6d7ec,
+
+  # if Authenticating with Azure using Active Directory 
+  username: "icloudnow@seemsysyahoo.onmicrosoft.com",  # this corresponds to ad_user ansible variable
+  password: "{{ password | default(lookup('env', 'AZURE_PASSWORD')) }}", #ad_pwd
+   
+  #if Authenitcating using Azure Service Principal
+  azure_client_id: " ",
+  azure_secret_key: "{{ secret | default(lookup('env', 'AZURE_SECRET')) }}", 
+  azure_tenant: " "
+
 }
 
-# These variable defines AWS cloud provision attributes
+# These variable defines Azure cloud provision attributes
 cluster: {
-  region_name: "us-east-1",     #TODO  Dynamic fetch
-  availability_zone: "", #TODO  Dynamic fetch based on region
-  security_group: "Fabric",
+  region_name: "eastus",     #TODO  Dynamic fetch
+  resource_group: "fabric",
+  vm_size: "Standard_D1",
 
-  target_os: "ubuntu",
-  image_name: "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-*",  
+
+#  target_os: "UbuntuServer",
+#  image_name: "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-*",  
   image_id: "ami-d15a75c7",
-  flavor_name: "t2.medium",  # "m2.medium" is big enough for Fabric
+  flavor_name: " ",  
   ssh_user: "ubuntu",
   validate_certs: True,
   private_net_name: "demonet",
   
   
-  public_key_file: "/home/ubuntu/.ssh/fd.pub",
-  private_key_file: "/home/ubuntu/.ssh/fd",
+  public_key_file: "/home/ubuntu/.ssh/id_rsa.pub",
+  private_key_file: "/home/ubuntu/.ssh/id_rsa",
   ssh_key_name: "fabric",
   # This variable indicate what IP should be used, only valid values are
   # private_ip or public_ip
