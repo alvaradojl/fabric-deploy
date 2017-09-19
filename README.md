@@ -1,6 +1,6 @@
 # Hyperledger Fabric Deployment
 
-Hyperledger fabric-deploy is an ansible project which deploys hybperledger fabric
+Hyperledger fabric deploy module is an ansible project which deploys hybperledger fabric
 onto multiple physical or virtual servers.
 
  - Provision virtual servers to participate in fabric network
@@ -13,7 +13,7 @@ onto multiple physical or virtual servers.
  - Push new or tagged fabric images onto all docker hosts
  - Deploy fabric network
  - Join peers to channels, instantiate chaincode
- 
+
 ## Status
 
 In development
@@ -22,7 +22,7 @@ In development
 
 - [Install Ansible](http://docs.ansible.com/ansible/intro_installation.html)
 - [Ubuntu 16.04 machines] (https://cloud-images.ubuntu.com/releases/16.04/)
-- Install cloud platform dependent packages such as OpenStack shade or AWS boto 
+- Install cloud platform dependent packages such as OpenStack shade or AWS boto
 - Ansible 2.3.0.0 or above
 
 Here is an example on how to make a clean ubuntu system as your ansible controller
@@ -35,7 +35,9 @@ need to do should be identical.
     sudo pip install --upgrade pip
     sudo pip install six==1.10.0
     sudo pip install ansible==2.3.0.0
-    git clone https://github.com/litong01/fabric-deploy.git
+    git clone https://gerrit.hyperledger.org/r/cello
+
+All the following work assumed that you are in cello/src/agent/ansible directory
 
 ## Deploy hyperledger fabric onto different environment
 

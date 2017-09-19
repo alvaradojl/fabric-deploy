@@ -1,3 +1,12 @@
+This directory provide typical cloud and fabric network setting files,
+there two two types of the files in this directory. One type is the cloud
+setting file such as aws.yml, azure.yml, os.yml. This type of files
+provide information about a particular cloud, and also indicate provisioning
+size which ultimately determines the fabric network size. The other type of
+the files is the fabric network configuration. The details how the files
+should be organized are provided below in the Setup the fabric network
+section.
+
 ## Run the script to provision docker hosts.
 
 This step is to provision a set of virtual servers from an OpenStack cloud.
@@ -93,22 +102,22 @@ fabric network. Here is the bc1st.yml (short for block chain 1st network)::
       network: {
         fabric001: {
           cas: ["ca.orga", "ca.orgb"],
-   	      peers: ["leader@1stpeer.orga", "leader@1stpeer.orgb"],
+          peers: ["leader@1stpeer.orga", "leader@1stpeer.orgb"],
           orderers: ["1storderer.orgc", "1storderer.orgd"],
           zookeepers: ["zookeeper1st"],
-   	      kafkas: ["kafka1st"]
-   	    },
-   	    fabric002: {
-   	      cas: ["ca.orgc", "ca.orgd"],
+          kafkas: ["kafka1st"]
+        },
+        fabric002: {
+          cas: ["ca.orgc", "ca.orgd"],
           peers: ["anchor@2ndpeer.orga", "anchor@2ndpeer.orgb"],
           orderers: ["2ndorderer.orgc", "2ndorderer.orgd"],
           zookeepers: ["zookeeper2nd"],
-          kafkas: ["kafka2nd"]    
+          kafkas: ["kafka2nd"]
         },
         fabric003: {
           peers: ["worker@3rdpeer.orga", "worker@3rdpeer.orgb"],
           zookeepers: ["zookeeper3rd"],
-          kafkas: ["kafka3rd", "kafka4th"]    
+          kafkas: ["kafka3rd", "kafka4th"]
         }
       },
       baseimage_tag: "1.0.0-rc1"
@@ -172,7 +181,7 @@ want these machines any more, execute the following command to get rid
 of all the servers::
 
     ansible-playbook -e "mode=destroy env=os password=XXXXX cloud_type=os" provcluster.yml
-        
+
 ## ssh-agent
 
 Since ansible access either the virtual machines that you create on a
@@ -185,7 +194,7 @@ which should be always the machine that you run the ansible script.
 1. Create a ssh key pair (only do this once)::
 
         ssh-keygen -t rsa -f ~/.ssh/fd
-        
+
 2. Run the command once in a session in which you run the ansible script::
 
         eval $(ssh-agent -s)
@@ -225,7 +234,7 @@ is the file, each field gets explained after the file::
       # This variable indicate what IP should be used, only valid values are
       # private_ip or public_ip
       node_ip: "public_ip",
-  
+
       container_network: {
         Network: "172.17.0.0/16",
         SubnetLen: 24,
@@ -242,20 +251,20 @@ is the file, each field gets explained after the file::
       node_ips: ["169.45.102.186", "169.45.102.187", "169.45.102.188"],
 
       # fabric network node names expect to be using a clear pattern, this defines
-      # the prefix for the node names. 
+      # the prefix for the node names.
       name_prefix: "fabric",
       domain: "fabricnet",
 
       # stack_size determines how many virtual or physical machines we will have
-      # each machine will be named ${name_prefix}001 to ${name_prefix}${stack_size} 
+      # each machine will be named ${name_prefix}001 to ${name_prefix}${stack_size}
       stack_size: 3,
 
       etcdnodes: ["fabric001", "fabric002", "fabric003"],
       builders: ["fabric001"],
-  
+
       flannel_repo: "https://github.com/coreos/flannel/releases/download/v0.7.1/flannel-v0.7.1-linux-amd64.tar.gz",
       etcd_repo: "https://github.com/coreos/etcd/releases/download/v3.2.0/etcd-v3.2.0-linux-amd64.tar.gz",
-    
+
       go_ver: "1.7.5",
       # If volume want to be used, specify a size in GB, make volume size 0 if wish
       # not to use volume from your cloud
@@ -289,10 +298,10 @@ to create, also the information how to access them.
 
     etcdnodes: which servers to install etcd services
     builders: which server to be used for building hyperledger fabric
-  
+
     flannel_repo: where to download flanneld
     etcd_repo: where to download etcd
-    
+
     go_ver: version of golang to be installed
     volume_size: future use
     block_device_name: future use
@@ -312,3 +321,10 @@ the overlay network is 10.17.0.0/16 and the docker host network is
     DNS (UDP)        UDP  53                172.31.16.0/20
     DNS (UDP)        UDP  53                10.17.0.0/16
     All ICMP - IPv4  All  N/A               0.0.0.0/0
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+<img alt="Creative Commons License" style="border-width:0"
+src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+This work is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+Creative Commons Attribution 4.0 International License</a>.

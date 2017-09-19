@@ -3,7 +3,7 @@
 auth: {
   auth_url: "",
   # This should be your AWS Access Key ID
-  username: "AKIAJTDI64MBEL3WSYTQ",
+  username: "AKIAJY32VWHYOFOR4J7Q",
   # This should be your AWS Secret Access Key
   # can be passed as part of cmd line when running the playbook
   password: "{{ password | default(lookup('env', 'AWS_SECRET_KEY')) }}"
@@ -16,21 +16,20 @@ cluster: {
   security_group: "Fabric",
 
   target_os: "ubuntu",
-  image_name: "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-*",  
+  image_name: "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-*",
   image_id: "ami-d15a75c7",
   flavor_name: "t2.medium",  # "m2.medium" is big enough for Fabric
   ssh_user: "ubuntu",
   validate_certs: True,
   private_net_name: "demonet",
-  
-  
+
   public_key_file: "/home/ubuntu/.ssh/fd.pub",
   private_key_file: "/home/ubuntu/.ssh/fd",
   ssh_key_name: "fabric",
   # This variable indicate what IP should be used, only valid values are
   # private_ip or public_ip
   node_ip: "public_ip",
-  
+
   container_network: {
     Network: "172.16.0.0/16",
     SubnetLen: 24,
@@ -50,17 +49,17 @@ cluster: {
   node_ips: [ ],
 
   # fabric network node names expect to be using a clear pattern, this defines
-  # the prefix for the node names. 
+  # the prefix for the node names.
   name_prefix: "fabric",
   domain: "fabricnet",
 
   # stack_size determines how many virtual or physical machines we will have
-  # each machine will be named ${name_prefix}001 to ${name_prefix}${stack_size} 
+  # each machine will be named ${name_prefix}001 to ${name_prefix}${stack_size}
   stack_size: 3,
 
   etcdnodes: ["fabric001", "fabric002", "fabric003"],
   builders: ["fabric001"],
-  
+
   flannel_repo: "https://github.com/coreos/flannel/releases/download/v0.7.1/flannel-v0.7.1-linux-amd64.tar.gz",
   etcd_repo: "https://github.com/coreos/etcd/releases/download/v3.2.0/etcd-v3.2.0-linux-amd64.tar.gz",
   k8s_repo: "https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/",
@@ -70,7 +69,7 @@ cluster: {
   # If volume want to be used, specify a size in GB, make volume size 0 if wish
   # not to use volume from your cloud
   volume_size: 8,
- 
+
   # cloud block device name presented on virtual machines.
   block_device_name: "/dev/vdb"
 }

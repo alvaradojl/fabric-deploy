@@ -99,7 +99,7 @@
   with_items:
     - "peerOrganizations"
     - "ordererOrganizations"
-    
+
 - name: Create core.yml file for every peer
   template:
     src: "{{ playbook_dir }}/../deploy_compose/certsetup/templates/core.yaml"
@@ -109,8 +109,8 @@
 - name: Create config tx file
   template:
     src: "{{ playbook_dir }}/../deploy_compose/certsetup/templates/configtx.j2"
-    dest: "{{ fabricworkdir }}/configtx.yml"    
-    
+    dest: "{{ fabricworkdir }}/configtx.yml"
+
 - name: Create the gensis block and channel transaction
   shell: >-
     export FABRIC_CFG_PATH={{ fabricworkdir }} &&

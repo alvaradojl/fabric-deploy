@@ -17,7 +17,7 @@ spec:
         path: {{ fabricworkdir }}/run/keyfiles
     - name: chaincode
       hostPath:
-        path: {{ fabricworkdir }}/run/keyfiles/chaincode 
+        path: {{ fabricworkdir }}/run/keyfiles/chaincode
   containers:
     - name: fabriccli
       image: hyperledger/fabric-tools:{{ thetag }}

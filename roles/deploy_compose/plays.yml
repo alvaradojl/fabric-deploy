@@ -8,7 +8,7 @@
   tasks:
     - include: "fabricbuild/tasks/{{ mode }}.yml"
   tags: "fabricbuild"
- 
+
 - name: generate certificates
   hosts: builders
   gather_facts: false
@@ -17,7 +17,7 @@
     - "./../../vars/{{ env }}.yml"
   tasks:
     - include: "certsetup/tasks/{{ mode }}.yml"
-  tags: "certsetup" 
+  tags: "certsetup"
 
 - name: setup fabric network
   hosts: allnodes
@@ -27,4 +27,4 @@
     - "./../../vars/{{ env }}.yml"
   tasks:
     - include: "fabricsetup/tasks/{{ mode }}.yml"
-  tags: "fabricsetup" 
+  tags: "fabricsetup"

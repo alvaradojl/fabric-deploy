@@ -1,4 +1,4 @@
----  
+---
 - name: Add provisioning host group
   add_host:
     name: "{{ cluster.name_prefix }}{{ item }}"
@@ -6,4 +6,3 @@
     groups: "prohosts"
   with_sequence: count={{ cluster.stack_size }} format=%03x
   no_log: True
-  

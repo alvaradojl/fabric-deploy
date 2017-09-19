@@ -79,7 +79,7 @@
     -out Admin.{{ item.org }}.sk &&
     openssl req -new -SHA384 -key Admin.{{ item.org }}.sk -nodes
     -out Admin.{{ item.org }}.csr
-    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN=Admin.{{ item.org }}" &&  
+    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN=Admin.{{ item.org }}" &&
     openssl x509 -req -SHA384 -days 1000 -in Admin.{{ item.org }}.csr
     -CA {{ item.org }}.crt -CAkey {{ item.org }}.sk
     -CAcreateserial -out Admin.{{ item.org }}.crt &&
@@ -97,14 +97,14 @@
     cp {{ item.org }}.tls.sk users/Admin@{{ item.org }}/tls/server.sk &&
     openssl req -new -SHA384 -key {{ item.org }}.tls.sk -nodes
     -out {{ item.org }}.tls.csr
-    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN=Admin.{{ item.org }}" &&  
+    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN=Admin.{{ item.org }}" &&
     openssl x509 -req -SHA384 -days 1000 -in {{ item.org }}.tls.csr
     -CA {{ item.org }}.crt -CAkey {{ item.org }}.sk
     -CAcreateserial -out users/Admin@{{ item.org }}/tls/server.crt && rm *.key
   args:
     chdir: "{{ fabricworkdir }}/keyfiles/{{ item.org }}"
   with_items: "{{ cas }}"
-  
+
 - name: Create certificate directories for orders and peers
   file:
     path: "{{ fabricworkdir }}/keyfiles/{{ item.org }}/{{ item.name}}"
@@ -121,7 +121,7 @@
     -out {{ item.name }}.{{ item.org }}.sk &&
     openssl req -new -SHA384 -key {{ item.name }}.{{ item.org }}.sk -nodes
     -out {{ item.name }}.{{ item.org }}.csr
-    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN={{ item.name }}.{{ item.org }}" &&  
+    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN={{ item.name }}.{{ item.org }}" &&
     openssl x509 -req -SHA384 -days 1000 -in {{ item.name }}.{{ item.org }}.csr
     -CA ../{{ item.org }}.crt -CAkey ../{{ item.org }}.sk
     -CAcreateserial -out {{ item.name }}.{{ item.org }}.crt &&
@@ -130,7 +130,7 @@
     -out {{ item.name }}.{{ item.org }}.tls.sk &&
     openssl req -new -SHA384 -key {{ item.name }}.{{ item.org }}.tls.sk -nodes
     -out {{ item.name }}.{{ item.org }}.tls.csr
-    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN=tls.{{ item.name }}.{{ item.org }}" &&  
+    -subj "/C=US/ST=NC/L=Cary/O={{ item.org }}/CN=tls.{{ item.name }}.{{ item.org }}" &&
     openssl x509 -req -SHA384 -days 1000 -in {{ item.name }}.{{ item.org }}.tls.csr
     -CA ../{{ item.org }}.crt -CAkey ../{{ item.org }}.sk
     -CAcreateserial -out {{ item.name }}.{{ item.org }}.tls.crt && rm *.key &&

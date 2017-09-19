@@ -13,8 +13,8 @@ very good azure ansible playbook -
 https://github.com/Blaag/azure/edit/master/create-iperf-vm.yml
 
 
-Pre-reqs 
----------
+Pre-reqs
+--------
 
 To use ansible to work with AWS, python library like boto and boto3 must be installed:
 -----

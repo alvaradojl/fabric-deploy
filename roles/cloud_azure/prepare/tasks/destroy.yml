@@ -6,7 +6,7 @@
     azure_sub_id: "{{ auth.subscription_id }}"
     region: "{{ cluster.region_name | default('eastus') }}"
     res_grp: "{{ cluster.resource_group }}"
-    
+
 - name: Delete a resource group
   azure_rm_resourcegroup:
     ad_user: "{{ azure_ad_user }}"
@@ -16,4 +16,3 @@
     location: "{{ region }}"
     state: absent
     force: yes
-  

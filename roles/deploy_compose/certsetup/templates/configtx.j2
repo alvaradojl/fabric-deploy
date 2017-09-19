@@ -21,7 +21,7 @@ Orderer: &OrdererDefaults
   Addresses:
 {%   for orderer in orderers %}
     - {{ orderer.name }}:7050
-{%   endfor %}  
+{%   endfor %}
   BatchTimeout: 2s
   BatchSize:
     MaxMessageCount: 10
@@ -32,7 +32,7 @@ Orderer: &OrdererDefaults
     Brokers:
 {%   for item in kafkas %}
       - {{ item }}:9092
-{%   endfor %}  
+{%   endfor %}
 {% endif %}
   Organizations:
 {% for org in ordererorgs %}
@@ -43,7 +43,7 @@ Application: &ApplicationDefaults
   Organizations:
 {%   for org in peerorgs %}
     - *{{ org }}
-{%   endfor %}  
+{%   endfor %}
 
 Profiles:
   OrgChannel:

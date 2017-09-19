@@ -28,7 +28,7 @@
     - "directory"
 
 - name: Extract hyperledger fabric code
-  git: 
+  git:
     repo: "{{ GIT_URL | default('http://gerrit.hyperledger.org/r/fabric') }}"
     dest: "{{ fabricpath }}"
     force: yes
@@ -53,19 +53,19 @@
   args:
     chdir: "{{ fabricpath }}"
   register: rawtag
-  
+
 - name: Get base version
   shell: grep '^BASE_VERSION' Makefile | cut -d '=' -f 2 | xargs
   args:
     chdir: "{{ fabricpath }}"
   register: baseversion
-      
+
 - name: Check if it is a release
   shell: grep '^IS_RELEASE' Makefile | cut -d '=' -f 2 | xargs
   args:
     chdir: "{{ fabricpath }}"
   register: isrelease
-  
+
 - name: Get the project version
   set_fact:
     project_version: >-
@@ -88,7 +88,7 @@
   args:
     chdir: "{{ gopath }}"
   when: fabric.baseimage_tag == '' and rawimages is defined and rawimages.stdout_lines|length > 0
-  
+
 - name: Create the project version file
   template:
     src: "{{ playbook_dir }}/../deploy_compose/fabricbuild/templates/VERSION.j2"

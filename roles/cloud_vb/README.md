@@ -14,7 +14,7 @@ vars/vb.yml, and named it myvb.yml, you can run the following command in the roo
 directory of the project, not in the directory where this file is located::
 
     ansible-playbook -e "mode=apply env=myvb cloud_type=vb password=xxxxx" procluster.yml
-    
+
 Replace the xxxxx in the command with your VirtualBox environment password, the user
 id should be configured in the auth section in the vars/myvb.yml file.
 
@@ -28,7 +28,7 @@ The base image should have the ssh user be a sudoer, for example if your ssh use
 is called ubuntu, do the following::
 
     echo "ubuntu ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/ununtu
-    
+
 You may also want to disable the daily update which by default is enabled. When
 you start a VB instance using the base image, if it starts auto update, your ansible
 script will not be able to install any onto the instance. When you build your

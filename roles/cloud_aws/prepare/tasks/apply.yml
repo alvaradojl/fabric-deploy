@@ -49,11 +49,11 @@
     aws_secret_key: "{{ aws_sec_key }}"
     vpc_id: "{{ vpcnet.vpcs[0].id }}"
     state: present
-    rules: 
-      - { proto: tcp, from_port: 22, to_port: 22, cidr_ip: "0.0.0.0/0" } 
-      - { proto: tcp, from_port: 179, to_port: 179, cidr_ip: "0.0.0.0/0" } 
-      - { proto: tcp, from_port: 80, to_port: 80, cidr_ip: "0.0.0.0/0" } 
-      - { proto: icmp, from_port: -1, to_port: -1, cidr_ip: "0.0.0.0/0" } 
+    rules:
+      - { proto: tcp, from_port: 22, to_port: 22, cidr_ip: "0.0.0.0/0" }
+      - { proto: tcp, from_port: 179, to_port: 179, cidr_ip: "0.0.0.0/0" }
+      - { proto: tcp, from_port: 80, to_port: 80, cidr_ip: "0.0.0.0/0" }
+      - { proto: icmp, from_port: -1, to_port: -1, cidr_ip: "0.0.0.0/0" }
       - { proto: udp, from_port: 53, to_port: 53, cidr_ip: "0.0.0.0/0" }
       - { proto: udp, from_port: 8285, to_port: 8285, cidr_ip: "0.0.0.0/0" }
       - { proto: tcp, from_port: 1000, to_port: 65535, cidr_ip: "0.0.0.0/0" }
@@ -83,4 +83,4 @@
     sg_id: "{{ vpcsg.security_groups[0].group_id }}"
     groups: "prohosts"
   with_sequence: count={{ cluster.stack_size }} format=%03x
-  no_log: True  
+  no_log: True

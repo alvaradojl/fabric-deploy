@@ -4,11 +4,11 @@
     ip_pos: "{{ inventory_hostname | replace(cluster.name_prefix, '') }}"
 
 - name: Find the allocated IPs
-  set_fact:    
+  set_fact:
     ips: "{{ [cluster.node_ips[ip_pos|int-1]] | default([]) }}"
 
 - name: Setup release floating IP flag
-  set_fact:    
+  set_fact:
     ip_flag: "{{ (ips == []) | ternary(true, false) }}"
 
 - name: Destroy the OpenStack VM

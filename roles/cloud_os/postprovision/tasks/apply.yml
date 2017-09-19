@@ -25,7 +25,7 @@
   add_host:
     name: "{{ hostvars[item][cluster.node_ip] }}"
     private_ip: "{{ hostvars[item].private_ip }}"
-    public_ip: "{{ hostvars[item].public_ip }}" 
+    public_ip: "{{ hostvars[item].public_ip }}"
     inter_name: "{{ item }}"
     groups: "allnodes"
   with_items:
@@ -35,7 +35,7 @@
   add_host:
     name: "{{ hostvars[item[0]][cluster.node_ip] }}"
     private_ip: "{{ hostvars[item[0]].private_ip }}"
-    public_ip: "{{ hostvars[item[0]].public_ip }}" 
+    public_ip: "{{ hostvars[item[0]].public_ip }}"
     inter_name: "{{ item[0] }}"
     groups: "{{ item[1].type}}"
   when: item[0] in item[1].member
@@ -68,7 +68,7 @@
     - ['', '[allnodes]', "{{ groups['allnodes'] }}"]
     - ['', '[etcdnodes]', "{{ groups['etcdnodes'] | default('') }}"]
     - ['', '[builders]', "{{ groups['builders'] | default('') }}"]
-    
+
 - name: Create the hosts file
   lineinfile:
     dest: "{{ playbook_dir }}/../../run/fabrichosts"
@@ -78,7 +78,7 @@
       {{ hostvars[item].private_ip }}
       {{ hostvars[item].inter_name }}
   with_items:
-    - "{{ groups['prohosts'] }}"    
+    - "{{ groups['prohosts'] }}"
 
 - name: Wait until servers are up and runnning
   wait_for:

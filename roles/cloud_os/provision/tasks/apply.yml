@@ -3,11 +3,11 @@
   set_fact:
     tp_path: "{{ playbook_dir }}/provision/templates/{{ cluster.target_os }}.j2"
     ip_pos: "{{ inventory_hostname | replace(cluster.name_prefix, '') }}"
-    
+
 - name: Get the allocated IP address if there is any configured
-  set_fact:    
+  set_fact:
     ips: "{{ [cluster.node_ips[ip_pos|int|default(0)-1]] | default([]) }}"
-    
+
 - name: Create an OpenStack virtual machine
   os_server:
     state: "present"

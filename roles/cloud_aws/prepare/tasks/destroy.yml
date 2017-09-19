@@ -18,4 +18,3 @@
     groups: "prohosts"
   with_sequence: count={{ cluster.stack_size }} format=%03x
   no_log: True
-  

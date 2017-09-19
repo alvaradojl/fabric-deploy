@@ -7,7 +7,7 @@
 
 - name: Stop fabric pods
   command: >-
-    /opt/fabric/bin/kubectl --server {{ k8s_server }}:8080 delete 
+    /opt/fabric/bin/kubectl --server {{ k8s_server }}:8080 delete
     -f {{ fabricworkdir }}/run/fabric-pod.yml
   tags: "fabricdown"
 
@@ -27,3 +27,8 @@
   shell: docker images | grep "dev-*" | cat | awk '{print $1}' | xargs docker rmi -f
   when: images.stdout != ""
   no_log: true
+
+- name: Make sure that working directory is removed
+  file:
+    path: "{{ fabricworkdir }}/run"
+    state: absent

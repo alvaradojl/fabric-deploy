@@ -6,7 +6,7 @@
     state: present
     line: "{{ item }}"
   with_lines: cat "{{ playbook_dir }}/../../run/fabrichosts"
-  
+
 - name: Change the host name
   shell: >-
     echo {{ inventory_hostname[3:] }} > /etc/hostname;

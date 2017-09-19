@@ -7,7 +7,7 @@ OrdererOrgs:
 
   - Name: {{ item.org }}
     Domain: {{ item.org }}
-    Specs: {%      endif %}  
+    Specs: {%      endif %}
       - Hostname: {{ item.name }}
         CommonName: {{ item.name }}.{{ item.org}} {% set lastOrg = item.org %}
 {%   endfor %}
@@ -22,7 +22,7 @@ PeerOrgs:
 
   - Name: {{ item.org }}
     Domain: {{ item.org }}
-    Specs: {%      endif %}  
+    Specs: {%      endif %}
       - Hostname: {{ item.name }}
         CommonName: {{ item.name }}.{{ item.org}} {% set lastOrg = item.org %}
 {%   endfor %}

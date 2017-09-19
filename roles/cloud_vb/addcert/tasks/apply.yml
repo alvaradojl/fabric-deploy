@@ -3,7 +3,7 @@
   file:
     path: "~/.ssh/"
     state: "directory"
-  
+
 - name: Setup ssh key
   lineinfile:
     dest: "~/.ssh/authorized_keys"
@@ -12,4 +12,3 @@
     state: present
     line: "{{ item }}"
   with_lines: cat "{{ cluster.public_key_file }}"
-  

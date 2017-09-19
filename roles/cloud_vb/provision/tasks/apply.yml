@@ -10,7 +10,7 @@
     --name "{{ inventory_hostname }}" --register
   when: exists.stdout == ""
   tags: "createVM"
-  
+
 - name: Add port forwarding
   command: >-
     /usr/local/bin/VBoxManage modifyvm {{ inventory_hostname }} --natpf2
@@ -22,7 +22,7 @@
   shell: >-
     /usr/local/bin/VBoxManage list runningvms | grep {{ inventory_hostname }} | cat
   register: running
-  
+
 - name: Start up the VM
   command: >-
     /usr/local/bin/VBoxManage startvm "{{ inventory_hostname }}"
